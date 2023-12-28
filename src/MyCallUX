@@ -1,0 +1,9 @@
+import { useLocalMedia, VideoView } from "@whereby.com/browser-sdk/react";
+
+function SelfView() {
+  const localMedia = useLocalMedia({ audio: true, video: true });
+
+  const { localStream } = localMedia.state;
+
+  return <VideoView muted stream={localStream} />;
+}
