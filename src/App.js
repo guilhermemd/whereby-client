@@ -15,9 +15,11 @@ function App() {
     [meetingInfo]
   );
 
+  // const API_URL = "http://localhost:8000";
+  const API_URL = "https://whereby-server.vercel.app";
   const createMeeting = async () => {
     try {
-      const response = await fetch("http://localhost:8000/create-meeting", {
+      const response = await fetch(`${API_URL}/create-meeting`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,9 +36,7 @@ function App() {
 
   const getMeetingData = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:8000/get-meeting/${meetingId}`
-      );
+      const response = await fetch(`${API_URL}/get-meeting/${meetingId}`);
       const data = await response.json();
       setMeetingData(data);
     } catch (error) {
