@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./App.css";
-import IconButton from "./components/IconButton";
-import ChatInput from "./components/ChatInput";
+import "./Main.css";
+import IconButton from "./IconButton";
+import ChatInput from "./ChatInput";
 import { useRoomConnection } from "@whereby.com/browser-sdk/react";
 
 function Main() {
@@ -12,15 +12,12 @@ function Main() {
 
   const chatMessageBottomRef = useRef(null);
 
-  const roomConnection = useRoomConnection(
-    "https://g-teste.whereby.com/f9acac53-5b3c-4d1f-a2a0-59e2907c3173",
-    {
-      localMediaOptions: {
-        audio: true,
-        video: true,
-      },
-    }
-  );
+  const roomConnection = useRoomConnection(localStorage.getItem("roomUrl"), {
+    localMediaOptions: {
+      audio: true,
+      video: true,
+    },
+  });
 
   const { state, components, actions } = roomConnection;
   const { localParticipant, remoteParticipants, screenshares, chatMessages } =
