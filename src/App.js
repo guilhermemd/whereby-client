@@ -8,12 +8,9 @@ function App() {
   const [meetingData, setMeetingData] = useState(null);
   const [meetingInfo, setMeetingInfo] = useState(null);
 
-  const saveRoomUrlToLocalStorage = useCallback(
-    (roomUrl) => {
-      localStorage.setItem("roomUrl", roomUrl);
-    },
-    [meetingInfo]
-  );
+  const saveRoomUrlToLocalStorage = useCallback((roomUrl) => {
+    localStorage.setItem("roomUrl", roomUrl);
+  }, []);
 
   // const API_URL = "http://localhost:8000";
   const API_URL = "https://whereby-server.vercel.app";
@@ -34,17 +31,17 @@ function App() {
     }
   };
 
-  const getMeetingData = async () => {
-    try {
-      const response = await fetch(`${API_URL}/get-meeting/${meetingId}`);
-      const data = await response.json();
-      setMeetingData(data);
-    } catch (error) {
-      console.error("Erro ao obter informações da reunião", error);
-    }
-  };
-
   useEffect(() => {
+    const getMeetingData = async () => {
+      try {
+        const response = await fetch(`${API_URL}/get-meeting/${meetingId}`);
+        const data = await response.json();
+        setMeetingData(data);
+      } catch (error) {
+        console.error("Erro ao obter informações da reunião", error);
+      }
+    };
+
     if (meetingId) {
       getMeetingData();
     }
